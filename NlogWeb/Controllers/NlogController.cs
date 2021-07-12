@@ -65,6 +65,7 @@ namespace NlogWeb.Controllers
             var fileTarget = configuration.FindTargetByName<FileTarget>("allfile");
             fileTarget.FileName = "G:\\站点日志\\" + log.SiteName + "\\" + log.SiteName + "_${shortdate}.log";
             _INLogHelper.LogError(log);
+            Console.WriteLine("测试");
             return Ok();
         }
     }
