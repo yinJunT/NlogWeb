@@ -40,7 +40,7 @@ namespace NlogWeb.Controllers
         [Route("values/test")]
         public IActionResult Test() 
         {
-            _logger.LogError("测试日志");
+            _logger.LogError("git修改");
             int i = 0;
             int res = 1 / i;
             return Ok();

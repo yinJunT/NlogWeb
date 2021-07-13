@@ -27,7 +27,6 @@ namespace NlogWeb.Controllers
         public IActionResult Index(string name)
         {
             string data = "";
-
             using (MemoryStream ms = new MemoryStream())
             {
                 Request.Body.CopyToAsync(ms);
@@ -60,12 +59,12 @@ namespace NlogWeb.Controllers
 
                 data = new StreamReader(ms, Encoding.UTF8).ReadToEnd();
             }
-            LogMessage log = JsonHelper.JsonStringToObj<LogMessage>(data);
+            LogMessage log = JsonHelper.JsonStringToObj<LogMessage>(data);       
             var configuration = LogManager.Configuration;
             var fileTarget = configuration.FindTargetByName<FileTarget>("allfile");
             fileTarget.FileName = "G:\\站点日志\\" + log.SiteName + "\\" + log.SiteName + "_${shortdate}.log";
             _INLogHelper.LogError(log);
-            Console.WriteLine("测试");
+            _logger.LogInformation(data);
             return Ok();
         }
     }
